@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.magnoliacollectivewellness'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Appium Java Client
+    implementation 'io.appium:java-client:8.5.1'
+    
+    // Selenium WebDriver
+    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
+    implementation 'org.seleniumhq.selenium:selenium-api:4.11.0'
+    
+    // JUnit for testing
+    testImplementation 'junit:junit:4.13.2'
+    
+    // Logging
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+}
+
+test {
+    useJUnit()
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+    
+    // Allow tests to be skipped during build
+    systemProperty 'skipAppiumTests', System.getProperty('skipAppiumTests', 'false')
+    systemProperty 'platform', System.getProperty('platform', 'android')
+    systemProperty 'runTarget', System.getProperty('runTarget', 'device')
+}
+
