@@ -53,7 +53,8 @@ public class TestConfig {
     public static final String ANDROID_EMULATOR_PLATFORM_VERSION = getSystemProperty("android.emulatorPlatformVersion", "15");
     
     // Android App Properties
-    public static final String ANDROID_APP_PACKAGE = "com.magnoliacollectivewellness.app";
+    // Note: Dev build uses .dev suffix, release uses base package
+    public static final String ANDROID_APP_PACKAGE = getSystemProperty("android.appPackage", "com.magnoliacollectivewellness.app.dev");
     public static final String ANDROID_APP_ACTIVITY = "com.magnoliacollectivewellness.app.MainActivity";
     public static final String ANDROID_APP_PATH = getSystemProperty("android.appPath", "./app/app-debug.apk");
     
